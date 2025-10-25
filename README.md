@@ -40,7 +40,7 @@ A arquitetura integra sensores físicos, processamento em tempo real e visualiza
 <div align="center">
 
 <p align="center">
-  <img src="public/src/assets/imgs/system_arquiteture.png" width="600">
+  <img src="src/assets/imgs/system_arquiteture.png" width="600">
 </p>
 
 </div>
@@ -67,15 +67,15 @@ Durante a PoC, o sistema foi na **simulação Wokwi (ESP32 + sensores IR + LCD)*
 
 ### ESP32 do Placar
 
-<img src="public/src/assets/imgs/esp_scoreboard.png" alt="ESP32 do Placar" width="600">
+<img src="src/assets/imgs/esp_scoreboard.png" alt="ESP32 do Placar" width="600">
 
 ### Servidor Express Integrado à VM
 
-<img src="public/src/assets/imgs/terminal_integrate_vm.png" alt="Servidor Express Integrado à VM" width="600">
+<img src="src/assets/imgs/terminal_integrate_vm.png" alt="Servidor Express Integrado à VM" width="600">
 
 ### Tela Frontend Integrada ao WebSocket
 
-<img src="public/src/assets/imgs/front-end_integrate_websocket.png" alt="Tela Frontend Integrada ao WebSocket" width="600">
+<img src="src/assets/imgs/front-end_integrate_websocket.png" alt="Tela Frontend Integrada ao WebSocket" width="600">
 
 ## 🧰 Componentes Utilizados
 
