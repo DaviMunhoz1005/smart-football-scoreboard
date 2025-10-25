@@ -234,6 +234,29 @@ Você verá o placar em tempo real, que será atualizado conforme mensagens MQTT
 - Back-end retransmite via WebSocket
 - Front-end recebe e atualiza a interface em tempo real
 
+## 📡 Comunicação MyMQTT
+
+A comunicação entre o ESP32, o broker Mosquitto e o servidor Node.js é realizada via protocolo MQTT, garantindo leveza, confiabilidade e baixa latência — essencial para eventos em tempo real como detecção de gols.
+
+O ESP32 atua como cliente publisher (publicador de mensagens), enquanto o servidor Node.js é tanto subscriber (assinante) quanto publisher, permitindo envio e recebimento de comandos no fluxo bidirecional.
+
+### 🔁 Estrutura dos Tópicos
+
+|    Tipo   |        Tópico        |                                        Descrição                                       |     Payload Esperado     |
+|:---------:|:--------------------:|:--------------------------------------------------------------------------------------:|:------------------------:|
+| Subscribe | jogo/placar          | Tópico assinado pelo back-end para receber atualizações do placar enviadas pelo ESP32. | {"timeA": 1, "timeB": 0} |
+| Publish   | jogo/comandos/reset  | Reinicia o placar para 0x0.                                                            | {"reset": true}          |
+| Publish   | jogo/comandos/golA   | Incrementa o placar do Time A em +1.                                                   | {"gol": "A"}             |
+| Publish   | jogo/comandos/golB   | Incrementa o placar do Time B em +1.                                                   | {"gol": "B"}             |
+| Publish   | jogo/comandos/anular | Anula o último gol registrado (útil para correções de erro).                           | {"anular": true}         |
+
+## ⚙️ Fluxo Operacional
+
+- O ESP32 detecta um gol via sensor IR e publica uma mensagem no tópico jogo/placar.
+- O Mosquitto recebe a mensagem e a distribui para todos os clientes inscritos (no caso, o servidor Node.js).
+- O back-end Node.js interpreta o evento e retransmite a atualização para o front-end via WebSocket.
+- Em casos de controle (reset, anulação ou incrementos manuais), o back-end publica comandos nos tópicos jogo/comandos/*, que o ESP32 pode consumir para sincronizar o placar físico (LCD) com o sistema central.
+
 ## 🛠 Tecnologias
 
 - Mosquitto (Broker MQTT)
