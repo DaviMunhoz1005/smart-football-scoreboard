@@ -4,7 +4,7 @@ const WebSocket = require("ws");
 const mqtt = require("mqtt");
 const path = require("path");
 
-const MQTT_HOST = "mqtt://18.228.226.103:1883"; // TROCAR PELO IP DA VM
+const MQTT_HOST = "mqtt://54.242.249.140:1883"; // TROCAR PELO IP DA VM
 const MQTT_TOPIC = "jogo/placar";
 
 const app = express();
